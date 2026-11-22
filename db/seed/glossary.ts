@@ -1,0 +1,31 @@
+import type { GlossaryTerm } from '../../shared/types.ts';
+
+// Plain-language definitions shown when an owner taps a highlighted word.
+export const glossary: GlossaryTerm[] = [
+  { term: 'ISO microchip', aliases: ['microchip', 'ISO 11784/11785'], explanation: 'A tiny chip, about the size of a grain of rice, placed under your pet’s skin. It stores a 15-digit number that any international scanner can read. ISO is the international standard most countries require.' },
+  { term: 'Rabies', aliases: [], explanation: 'A deadly virus spread through bites. Many places (like Hong Kong, the UK, Japan and Australia) are rabies-free, which is why their pet rules are so strict.' },
+  { term: 'RNATT', aliases: ['titer test', 'rabies blood test', 'titre test'], explanation: 'A blood test that measures whether the rabies vaccine worked. It must be done at an approved lab. Some countries then make you wait (often 180 days) before your pet can arrive.' },
+  { term: 'Health certificate', aliases: ['animal health certificate', 'veterinary certificate'], explanation: 'An official form your vet fills in shortly before travel, confirming your pet is healthy and meets the destination’s rules. It is only valid for a few days.' },
+  { term: 'Endorse', aliases: ['endorsement', 'endorsed'], explanation: 'When a government vet checks your vet’s paperwork and adds an official stamp or signature. Most countries won’t accept a certificate without it.' },
+  { term: 'Accredited vet', aliases: ['accredited veterinarian'], explanation: 'A regular vet who is also authorised by the government to sign export paperwork. Not every vet is — ask yours.' },
+  { term: 'Official Veterinarian', aliases: ['government vet', 'official vet'], explanation: 'A vet who works for, or is authorised by, the government to approve export documents.' },
+  { term: 'CFIA', aliases: [], explanation: 'Canadian Food Inspection Agency — the Canadian government body that endorses pet export certificates and sets the rules for pets entering Canada.' },
+  { term: 'AFCD', aliases: [], explanation: 'Agriculture, Fisheries and Conservation Department — the Hong Kong government department that issues pet import permits and inspects animals on arrival.' },
+  { term: 'Special Permit', aliases: [], explanation: 'The permit Hong Kong’s AFCD must issue before any dog or cat can enter Hong Kong. Each animal needs its own.' },
+  { term: 'USDA APHIS', aliases: ['APHIS', 'VEHCS'], explanation: 'The US Department of Agriculture’s animal health service. It endorses export health certificates for pets leaving the US, often online through a system called VEHCS.' },
+  { term: 'APHA', aliases: [], explanation: 'Animal and Plant Health Agency — the UK government body for pet import and export paperwork.' },
+  { term: 'DAFF', aliases: ['BICON'], explanation: 'Australia’s Department of Agriculture, Fisheries and Forestry. You apply for an Australian pet import permit through its online system, BICON.' },
+  { term: 'AQS', aliases: ['Animal Quarantine Service'], explanation: 'Japan’s Animal Quarantine Service, which approves pets coming into and leaving Japan.' },
+  { term: 'AVS', aliases: [], explanation: 'Singapore’s Animal & Veterinary Service (part of NParks), which issues pet and import licences.' },
+  { term: 'Manifest cargo', aliases: ['manifested cargo', 'cargo', 'air cargo'], explanation: 'Your pet flies in the plane’s temperature- and pressure-controlled hold as a cargo shipment with its own air waybill, booked separately from your ticket. It might even be on a different flight from you.' },
+  { term: 'Checked baggage', aliases: ['excess baggage'], explanation: 'Your pet flies in the hold of your own flight and is checked in at the passenger desk, like a suitcase but with special handling.' },
+  { term: 'In cabin', aliases: ['cabin'], explanation: 'A small pet travels with you inside the cabin, in a carrier under the seat in front. Many destinations (Hong Kong, UK, Australia) don’t allow this for arrivals.' },
+  { term: 'IATA crate', aliases: ['IATA', 'Live Animal Regulations', 'LAR'], explanation: 'A travel crate that meets the International Air Transport Association’s rules for live animals: rigid, well ventilated, secure door, big enough for your pet to stand and turn around.' },
+  { term: 'IPATA', aliases: ['pet relocation agent', 'pet shipper'], explanation: 'The International Pet and Animal Transportation Association — a professional body for pet relocation companies. Members can handle the bookings, paperwork and airport steps for you.' },
+  { term: 'Captain’s affidavit', aliases: ['airline certificate'], explanation: 'A form completed by the airline confirming your pet stayed on board and had no contact with other animals during the flight. Hong Kong asks for it.' },
+  { term: 'Quarantine', aliases: ['post-entry quarantine', 'PEQ'], explanation: 'A period where your pet stays at a government facility after arrival so officials can watch for disease. Some countries need none, others (like Australia) at least 10 days.' },
+  { term: 'Brachycephalic', aliases: ['snub-nosed', 'flat-faced'], explanation: 'Breeds with short, flat faces (Persian, Himalayan, Pug, French Bulldog, etc.). They can struggle to breathe in heat or stress, so many airlines limit or ban them in the hold.' },
+  { term: 'Heat embargo', aliases: [], explanation: 'A period, usually in summer, when an airline won’t carry pets in the hold on certain routes because of high temperatures.' },
+  { term: 'Residence period', aliases: ['residence rule'], explanation: 'A rule that your pet must have lived in the departure country for a set time (often 180 days, or since birth) right before travel.' },
+  { term: 'Tapeworm treatment', aliases: [], explanation: 'A worming medicine given by a vet. Some places (UK, Ireland, Finland, Malta, Norway) require it for dogs 1–5 days before arrival.' },
+];
