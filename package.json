@@ -3,34 +3,25 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Pet relocation planner: personalised checklist, timeline and airline options for moving a cat or dog between countries.",
+  "description": "Pet relocation planner: personalised checklist, timeline and airline options for moving a cat or dog between countries. Runs entirely in the browser.",
   "scripts": {
     "dev": "vite",
-    "dev:api": "wrangler pages dev dist --port 8788 --d1 DB=petpassage",
     "build": "vite build",
-    "start": "npm run build && wrangler pages dev dist --port 8788",
-    "seed:build": "node scripts/build-seed.ts",
-    "db:reset": "WRANGLER_SEND_METRICS=false npm run seed:build && wrangler d1 execute petpassage --local --file db/schema.sql --yes && wrangler d1 execute petpassage --local --file db/generated/seed.sql --yes",
-    "db:reset:remote": "npm run seed:build && wrangler d1 execute petpassage --remote --file db/schema.sql --yes && wrangler d1 execute petpassage --remote --file db/generated/seed.sql --yes",
-    "db:seed:remote": "npm run seed:build && wrangler d1 execute petpassage --remote --file db/generated/seed.sql --yes",
+    "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "setup-sql": "npm run seed:build && node -e \"const fs=require('fs');fs.writeFileSync('db/setup-all.sql','-- One-paste setup for the Cloudflare D1 Console: schema + data. Regenerate with npm run setup-sql.\\n'+fs.readFileSync('db/schema.sql','utf8')+'\\n'+fs.readFileSync('db/generated/seed.sql','utf8'))\""
+    "test": "vitest run"
   },
   "dependencies": {
-    "hono": "^4.10.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251109.0",
     "@types/node": "^22.18.13",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
-    "vitest": "^4.0.6",
-    "wrangler": "^4.45.0"
+    "vitest": "^4.0.6"
   }
 }

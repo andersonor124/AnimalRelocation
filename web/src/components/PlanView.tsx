@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import type { AirlineOption, Plan, TripInput } from '../api.ts';
-import { api } from '../api.ts';
+import { useMemo, useState } from 'react';
+import type { Plan, TripInput } from '../planner.ts';
+import { downloadCalendar, getAirlines } from '../planner.ts';
+import { planQuery } from '../share.ts';
 import { fmtDate, relDays } from '../format.ts';
 import { AirlineList } from './AirlineList.tsx';
 import { GlossaryList } from './GlossaryList.tsx';
@@ -11,28 +12,24 @@ type Tab = 'timeline' | 'airlines' | 'glossary';
 interface Props {
   plan: Plan;
   input: TripInput;
-  tripId?: string;
-  saving: boolean;
   onToggle: (id: string, done: boolean) => void;
-  onSave: () => void;
   onEdit: () => void;
 }
 
-export function PlanView({ plan, input, tripId, saving, onToggle, onSave, onEdit }: Props) {
+export function PlanView({ plan, input, onToggle, onEdit }: Props) {
   const [tab, setTab] = useState<Tab>('timeline');
-  const [airlines, setAirlines] = useState<{ suitable: AirlineOption[]; unsuitable: AirlineOption[] } | null>(null);
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    setAirlines(null);
-    api.airlines(input).then(setAirlines, () => setAirlines({ suitable: [], unsuitable: [] }));
-  }, [input.origin, input.dest, input.snubNosed]); // eslint-disable-line react-hooks/exhaustive-deps
+  const airlines = useMemo(() => getAirlines(input), [input]);
 
   const done = plan.tasks.filter((t) => t.done).length;
   const pct = plan.tasks.length ? Math.round((done / plan.tasks.length) * 100) : 0;
   const next = plan.tasks.find((t) => !t.done && t.critical) ?? plan.tasks.find((t) => !t.done);
   const pet = input.petName || `your ${input.species}`;
-  const shareUrl = tripId ? `${location.origin}/trip/${tripId}` : '';
+  // The link carries the plan and the ticks made so far, so it can be opened on another device.
+  const shareUrl = `${location.origin}${location.pathname}${planQuery(
+    input,
+    plan.tasks.filter((t) => t.done).map((t) => t.id),
+  )}`;
 
   const copy = async () => {
     try {
@@ -79,24 +76,21 @@ export function PlanView({ plan, input, tripId, saving, onToggle, onSave, onEdit
           </p>
         )}
         <div className="actions no-print">
-          {tripId ? (
-            <div className="share">
-              <span className="share-label">Your private link — bookmark it or open it on your phone:</span>
-              <div className="share-row">
-                <input readOnly value={shareUrl} aria-label="Private link to this plan" onFocus={(e) => e.target.select()} />
-                <button className="btn" type="button" onClick={copy}>
-                  {copied ? 'Copied ✓' : 'Copy'}
-                </button>
-              </div>
+          <div className="share">
+            <span className="share-label">
+              Your progress is saved on this device. To open it on your phone or share it, copy this link — it includes the steps
+              ticked so far.
+            </span>
+            <div className="share-row">
+              <input readOnly value={shareUrl} aria-label="Link to this plan with your progress" onFocus={(e) => e.target.select()} />
+              <button className="btn primary" type="button" onClick={copy}>
+                {copied ? 'Copied ✓' : '🔗 Copy link'}
+              </button>
             </div>
-          ) : (
-            <button className="btn primary" type="button" onClick={onSave} disabled={saving}>
-              {saving ? 'Saving…' : '🔗 Save & get a private link'}
-            </button>
-          )}
-          <a className="btn" href={api.calendarUrl(input, tripId)} download="pet-move-plan.ics">
+          </div>
+          <button className="btn" type="button" onClick={() => downloadCalendar(plan, input.petName)}>
             📅 Add to calendar
-          </a>
+          </button>
           <button className="btn" type="button" onClick={() => window.print()}>
             🖨️ Print
           </button>

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import * as seed from '../db/seed/index.ts';
-import { filterAirlines } from '../server/engine/airlines.ts';
-import { buildPlan } from '../server/engine/buildPlan.ts';
-import { addDays } from '../server/engine/dates.ts';
-import { planToICS } from '../server/engine/ics.ts';
+import * as seed from '../data/index.ts';
+import { filterAirlines } from '../engine/airlines.ts';
+import { buildPlan } from '../engine/buildPlan.ts';
+import { addDays } from '../engine/dates.ts';
+import { planToICS } from '../engine/ics.ts';
 import type { Species } from '../shared/types.ts';
 
 const TODAY = '2026-11-22';
@@ -184,5 +184,30 @@ describe('calendar export', () => {
     expect(ics.startsWith('BEGIN:VCALENDAR')).toBe(true);
     expect(ics).toContain('SUMMARY:🐾 Apply for the AFCD Special Permit (Mochi)');
     expect(ics.trim().endsWith('END:VCALENDAR')).toBe(true);
+  });
+});
+
+import { mergeDone, parsePlanQuery, planQuery } from '../web/src/share.ts';
+
+describe('share links', () => {
+  const input = { origin: 'CA', dest: 'HK', species: 'cat' as const, arrivalDate: '2027-04-20', petName: 'Mochi', snubNosed: false };
+
+  it('round-trips a plan and its progress through the web address', () => {
+    const q = planQuery(input, ['hk-microchip', 'hk-rabies']);
+    expect(q).toContain('done=hk-microchip,hk-rabies');
+    const back = parsePlanQuery(q)!;
+    expect(back.input).toEqual(input);
+    expect(back.sharedDone).toEqual(['hk-microchip', 'hk-rabies']);
+  });
+
+  it('rejects broken links', () => {
+    expect(parsePlanQuery('?from=CA&to=CA&species=cat&arrival=2027-01-01')).toBeNull();
+    expect(parsePlanQuery('?from=CA&to=HK&species=fish&arrival=2027-01-01')).toBeNull();
+    expect(parsePlanQuery('?from=CA&to=HK&species=cat&arrival=soon')).toBeNull();
+    expect(parsePlanQuery('?from=CA&to=HK&species=cat&arrival=2027-01-01&done=<script>')!.sharedDone).toEqual([]);
+  });
+
+  it('merges shared ticks with this device without losing any', () => {
+    expect(mergeDone(['a', 'b'], ['b', 'c'])).toEqual(['a', 'b', 'c']);
   });
 });

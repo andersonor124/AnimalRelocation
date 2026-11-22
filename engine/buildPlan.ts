@@ -11,7 +11,7 @@ import type {
   Requirement,
   Species,
   TaskStatus,
-} from '../../shared/types.ts';
+} from '../shared/types.ts';
 import { addDays, diffDays, prettyDate } from './dates.ts';
 
 export interface PlanInput {

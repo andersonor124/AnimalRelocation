@@ -1,4 +1,4 @@
-import type { Airline, AirlineRoute } from '../../shared/types.ts';
+import type { Airline, AirlineRoute } from '../shared/types.ts';
 import { LAST_CHECKED } from './helpers.ts';
 
 const ALL = ['CA', 'HK', 'US', 'GB', 'EU', 'AU', 'SG', 'JP'];

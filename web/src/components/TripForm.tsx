@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import type { Country, TripInput } from '../api.ts';
-import { localToday } from '../api.ts';
+import type { Country, TripInput } from '../planner.ts';
+import { localToday } from '../planner.ts';
 
 interface Props {
   countries: Country[];

@@ -1,4 +1,4 @@
-import type { Requirement } from '../../shared/types.ts';
+import type { Requirement } from '../shared/types.ts';
 
 /** Date the seed content was last reviewed. Shown in the app next to every rule. */
 export const LAST_CHECKED = '2026-11-22';

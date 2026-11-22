@@ -12,7 +12,7 @@
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "types": ["@cloudflare/workers-types", "node", "vite/client"]
+    "types": ["node", "vite/client"]
   },
-  "include": ["web/src", "shared", "server", "functions", "db/seed", "scripts", "tests"]
+  "include": ["web/src", "shared", "engine", "data", "tests"]
 }

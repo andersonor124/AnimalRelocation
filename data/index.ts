@@ -1,5 +1,5 @@
-// All seed content in one place. `npm run seed:build` turns this into SQL for D1,
-// and the unit tests use it directly.
+// All rules, countries, airlines and glossary content. The app imports this directly.
+// Edit these files and push — the site redeploys automatically.
 import { airlineRoutes, airlines } from './airlines.ts';
 import { countries, countryGroups } from './countries.ts';
 import { exportRequirements } from './exports.ts';

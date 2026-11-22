@@ -1,5 +1,5 @@
 // Picks the airlines that can fly a pet on a route and explains why others can't.
-import type { Airline, AirlineOption, AirlineRoute, Country, TransportMode } from '../../shared/types.ts';
+import type { Airline, AirlineOption, AirlineRoute, Country, TransportMode } from '../shared/types.ts';
 
 export function filterAirlines(
   airlines: Airline[],

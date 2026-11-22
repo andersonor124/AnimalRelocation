@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { AirlineOption, Plan } from '../api.ts';
+import type { AirlineOption, Plan } from '../planner.ts';
 import { GlossaryText } from './GlossaryText.tsx';
 
 const MODE: Record<string, { icon: string; label: string; explain: string }> = {

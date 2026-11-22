@@ -1,4 +1,4 @@
-import type { GlossaryTerm } from '../../shared/types.ts';
+import type { GlossaryTerm } from '../shared/types.ts';
 
 // Plain-language definitions shown when an owner taps a highlighted word.
 export const glossary: GlossaryTerm[] = [

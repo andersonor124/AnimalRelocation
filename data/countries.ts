@@ -1,4 +1,4 @@
-import type { Country, CountryGroup } from '../../shared/types.ts';
+import type { Country, CountryGroup } from '../shared/types.ts';
 
 export const countries: Country[] = [
   {

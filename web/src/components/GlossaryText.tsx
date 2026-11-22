@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import type { GlossaryTerm } from '../api.ts';
+import type { GlossaryTerm } from '../planner.ts';
 
 export const GlossaryContext = createContext<GlossaryTerm[]>([]);
 

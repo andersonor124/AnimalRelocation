@@ -1,5 +1,5 @@
 // Builds an .ics calendar file so owners can add every deadline to their calendar.
-import type { Plan } from '../../shared/types.ts';
+import type { Plan } from '../shared/types.ts';
 
 const esc = (s: string) => s.replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
 const d = (iso: string) => iso.replaceAll('-', '');
