@@ -14,7 +14,8 @@
     "db:reset:remote": "npm run seed:build && wrangler d1 execute petpassage --remote --file db/schema.sql --yes && wrangler d1 execute petpassage --remote --file db/generated/seed.sql --yes",
     "db:seed:remote": "npm run seed:build && wrangler d1 execute petpassage --remote --file db/generated/seed.sql --yes",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "setup-sql": "npm run seed:build && node -e \"const fs=require('fs');fs.writeFileSync('db/setup-all.sql','-- One-paste setup for the Cloudflare D1 Console: schema + data. Regenerate with npm run setup-sql.\\n'+fs.readFileSync('db/schema.sql','utf8')+'\\n'+fs.readFileSync('db/generated/seed.sql','utf8'))\""
   },
   "dependencies": {
     "hono": "^4.10.4",

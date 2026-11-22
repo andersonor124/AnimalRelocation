@@ -70,6 +70,10 @@ npm run typecheck
 
 ## Deploy for free on Cloudflare (one-time setup)
 
+**No command line?** Use the dashboard instead. Create the D1 database `petpassage` in the Cloudflare dashboard, open its **Console**, paste the whole of [`db/setup-all.sql`](db/setup-all.sql) and run it. Then connect the repo as in step 4 below. Regenerate that file with `npm run setup-sql` whenever the seed data changes.
+
+**With the command line:**
+
 1. Create a free Cloudflare account at https://dash.cloudflare.com/sign-up (no credit card needed).
 2. Log in and create the database:
    ```bash
